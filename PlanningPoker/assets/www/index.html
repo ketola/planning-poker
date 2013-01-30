@@ -1,0 +1,111 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+	<title>Planning Poker</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="css/jquery.mobile.custom.min.css" />
+	<link rel="stylesheet" href="css/jquery.mobile.custom.structure.min.css" />
+	<link rel="stylesheet" href="css/jquery.mobile.custom.theme.min.css" />
+	<style>
+		html, body {
+    		height:100%;
+		}
+	
+		#card {
+			font-size: 10em;
+			border: 1px solid #000000;
+			border-radius: 15px;
+			height: 4.75ex;
+			width: 3.25ex;
+			background-color: #ffffff;
+			margin:auto;
+			position: relative;
+		}
+		
+		#value {
+			margin-top: 1.20ex;
+			width: 100%;
+			text-align:center;
+		}
+		
+		#imgtop {
+			position: absolute;
+			left: 0.1ex;
+			top: 0.1ex;
+			z-index: 1;
+			height: 0.5ex;
+			width: 0.5ex;
+		}
+		
+		#imgbottom {
+			position: absolute;
+			right: 0.1ex;
+			bottom: 0.1ex;
+			z-index: 1;
+			height: 0.5ex;
+			width: 0.5ex;
+		}
+	</style>
+	
+	<script src="js/jquery-1.8.2.min.js"></script>
+	<script src="js/jquery.mobile.custom.min.js"></script>
+	
+	<script>
+	var cards = [0, 1, 2, 3, 5, 8, 13, 20, 40, 100];
+		var selectedIndex = 0;
+		
+		$(document).ready(function(){
+			$("#value").text(cards[selectedIndex]);
+			
+			$( document ).bind( "swipeleft", function( event, data ){
+				bigger();
+				$("#value").text(cards[selectedIndex]);
+			});
+			
+			$( document ).bind( "swiperight", function( event, data ){
+				smaller();
+				$("#value").text(cards[selectedIndex]);
+			});
+		});
+		
+		function bigger() {
+			if(selectedIndex == cards.length - 1){
+				selectedIndex = 0;
+			} else {
+				selectedIndex++;
+			}
+		}
+		
+		function smaller() {
+			if(selectedIndex == 0){
+				selectedIndex = cards.length - 1;
+			} else {
+				selectedIndex--;
+			}
+		}
+	</script>
+</head> 
+<body> 
+
+<div data-role="page" class="type-interior" id="main" data-theme="b">
+
+	<div data-role="header">
+		<h1>Planning Poker</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+		<div class="content-primary">
+						
+		<div id="card">
+		<img id="imgtop" src="img/ml_logo.jpg">
+			<div id="value"></div>
+		<img id="imgbottom" src="img/ml_logo.jpg">
+		</div>
+		
+		</div><!--/content-primary -->		
+	</div><!-- /content -->
+	
+</div><!-- /page -->
+
+</body>
+</html>
