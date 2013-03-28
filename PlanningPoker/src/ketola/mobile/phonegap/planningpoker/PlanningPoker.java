@@ -19,9 +19,10 @@
 
 package ketola.mobile.phonegap.planningpoker;
 
-import android.app.Activity;
+import org.apache.cordova.DroidGap;
+
 import android.os.Bundle;
-import org.apache.cordova.*;
+import android.view.WindowManager;
 
 public class PlanningPoker extends DroidGap
 {
@@ -29,7 +30,10 @@ public class PlanningPoker extends DroidGap
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         super.loadUrl("file:///android_asset/www/index.html");
     }
+    
+    
 }
 
